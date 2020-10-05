@@ -29,8 +29,8 @@ yarn add @tailwindcss/ui
 ```
 
 
-2. Create a Stylsheets folder in the Javascript folder
-- 2a. Create an application.scss file and add
+2. Create a **stylsheets** folder in the Javascript folder
+- 2a. In **stylsheets** create an application.scss file and add
 ```scss
 @import "tailwindcss/base";
 @import "tailwindcss/components";
