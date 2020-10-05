@@ -1,22 +1,22 @@
-### minimal
-`
-rails new \
-  --database postgresql \
-  --webpack \
-  -m https://raw.githubusercontent.com/lewagon/rails-templates/master/minimal.rb \
-  PROJECT-NAME
- `
-  
-### devise
-`
-rails new \
-  --database postgresql \
-  --webpack \
-  -m https://raw.githubusercontent.com/lewagon/rails-templates/master/devise.rb \
-  PROJECT-NAME
-`
 
-### Add Tailwind CSS
+## Create a new repo
+
+#### minimal
+<br>`rails new \`
+<br>`  --database postgresql \`
+<br>`  --webpack \`
+<br>`  -m https://raw.githubusercontent.com/lewagon/rails-templates/master/minimal.rb \`
+<br>`  PROJECT-NAME`
+  
+#### with devise
+<br>`rails new \`
+<br>`--database postgresql \`
+<br>`--webpack \`
+<br>`-m https://raw.githubusercontent.com/lewagon/rails-templates/master/devise.rb \`
+<br>`PROJECT-NAME`
+
+
+## Tailwind CSS
 
 1. Install [Tailwind CSS](https://tailwindcss.com/) and [Tailwind UI (components)](https://tailwindui.com/components) with Yarn
 <br>`yarn add tailwindcss`
