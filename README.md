@@ -36,11 +36,7 @@ rails new \
 3. Replace postcss.config.js file with [this content](https://github.com/thomasvanholder/jumpstart/blob/main/postcss.config.js)
 
 
-4. add tailwind config file to javascript/css folder
-[I'm an inline-style link with title](https://www.google.com "Tailwind config")
-
-
-5. Import tailwind config file into application.js
+4. Import tailwind config file into application.js
 ```javascript
 import "stylesheets/application";
 ```
