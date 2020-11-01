@@ -44,5 +44,19 @@ yarn add @tailwindcss/ui
 
 4. Import tailwind config file into application.js
 ```javascript
-import "stylesheets/application";
+import "../stylesheets/applications.scss";
 ```
+
+5. Remove bootstrap from 
+- application.js
+```
+import "bootstrap";
+```
+- Remove jquery, popper.js from webpacker environment.js
+```
+ $: 'jquery',
+ jQuery: 'jquery',
+ Popper: ['popper.js', 'default'] 
+```
+- 
+
