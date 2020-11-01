@@ -23,7 +23,7 @@ rails new \
 ## Tailwind CSS
 
 1. Install [Tailwind CSS](https://tailwindcss.com/) and [Tailwind UI (components)](https://tailwindui.com/components) with Yarn
-```
+```bash
 yarn add tailwindcss
 yarn add @tailwindcss/ui
 ```
