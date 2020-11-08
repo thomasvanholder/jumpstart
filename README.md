@@ -60,3 +60,7 @@ import "bootstrap";
 ```
 - 
 
+6. Add stylesheet pack tag to application.html
+```batch
+<%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+```
