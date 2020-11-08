@@ -21,6 +21,7 @@ rails new \
 
 
 ## Tailwind CSS
+more info: https://web-crunch.com/posts/how-to-install-tailwind-css-using-ruby-on-rails
 
 1. Install [Tailwind CSS](https://tailwindcss.com/) and [Tailwind UI (components)](https://tailwindui.com/components) with Yarn
 ```bash
