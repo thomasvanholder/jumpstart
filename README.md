@@ -1,6 +1,15 @@
 
 ## Create a new repo
 
+### with devise and tailwindcss
+```
+rails new \
+  --database postgresql \
+  --webpack \
+  -m https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/master.rb \
+  PROJECT-NAME
+```
+
 #### without devise
 ```
 rails new \
