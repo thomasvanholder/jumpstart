@@ -24,7 +24,7 @@ gsub_file('Gemfile', /# gem 'redis'/, "gem 'redis'")
 ############ TAILWIND
 ########################################
 def add_tailwind
-  run "yarn add tailwindcss"
+  run "yarn add @tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9"
   run "yarn add @fullhuman/postcss-purgecss"
 
   run "mkdir -p app/javascript/stylesheets"
