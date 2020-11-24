@@ -228,7 +228,8 @@ after_bundle do
   ########################################
   # TAILWIND
   ########################################
-  run 'yarn add tailwindcss'
+  #  run 'yarn add tailwindcss' because error: PostCSS plugin postcss-nested requires PostCSS 8. Uncommment later.
+  run 'yarn add @tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9'
   run 'yarn add @tailwindcss/ui'
 
   run "mkdir app/javascript/stylesheets"
