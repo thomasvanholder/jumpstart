@@ -222,29 +222,31 @@ after_bundle do
 
   # Fix puma config
   gsub_file('config/puma.rb', 'pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }', '# pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }')
+
+
+  ########################################
+  # TAILWIND
+  ########################################
+  run 'yarn add tailwindcss'
+  run 'yarn add @tailwindcss/ui'
+
+  run "mkdir app/javascript/stylesheets"
+  run "touch app/javascript/stylesheets/application.scss"
+
+  inject_into_file "app/javascript/stylesheets/application.scss" do <<~EOF
+    @import 'tailwindcss/base';
+    @import 'tailwindcss/components';
+    @import 'tailwindcss/utilities';
+    EOF
+  end
+
+  run "npx tailwindcss init --full"
+  mv "tailwind.config.js app/javascript/stylesheets"
+
+
+  inject_into_file "postcss.config.js", before: "require('postcss-import')" do <<~EOF
+    require("tailwindcss")("./app/javascript/stylesheets/tailwind.config.js"),
+    EOF
+  end
+
 end
-
-########################################
-# TAILWIND
-########################################
-# run 'yarn add tailwindcss'
-# run 'yarn add @tailwindcss/ui'
-
-# run "mkdir app/javascript/stylesheets"
-# run "touch app/javascript/stylesheets/application.scss"
-
-# inject_into_file "app/javascript/stylesheets/application.scss" do <<~EOF
-#   @import 'tailwindcss/base';
-#   @import 'tailwindcss/components';
-#   @import 'tailwindcss/utilities';
-#   EOF
-# end
-
-# run "npx tailwindcss init --full"
-# mv "tailwind.config.js app/javascript/stylesheets"
-
-
-# inject_into_file "postcss.config.js", before: "require('postcss-import')" do <<~EOF
-#   require("tailwindcss")("./app/javascript/stylesheets/tailwind.config.js"),
-#   EOF
-# end
