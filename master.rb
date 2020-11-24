@@ -183,7 +183,8 @@ after_bundle do
     // ----------------------------------------------------
 
     // External imports
-    import "stylesheets/applications.scss";
+    import "../stylesheets/application.scss";
+
 
     // Internal imports, e.g:
     // import { initSelect2 } from '../components/init_select2';
