@@ -25,8 +25,7 @@ gsub_file('Gemfile', /# gem 'redis'/, "gem 'redis'")
 run 'rm -rf app/assets/stylesheets'
 run 'rm -rf vendor'
 
-run 'curl -L https://github.com/thomasvanholder/jumpstart/rails-stylesheets/master.zip > stylesheets.zip'
-run 'curl -L https://github.com/lewagon/stylesheets/archive/master.zip > stylesheets.zip'
+run 'curl -L https://github.com/thomasvanholder/stylesheets/acrhive/master.zip > stylesheets.zip'
 run 'unzip stylesheets.zip -d app/assets && rm stylesheets.zip && mv app/assets/rails-stylesheets-master app/assets/stylesheets'
 
 # Dev environment
