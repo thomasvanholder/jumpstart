@@ -37,6 +37,10 @@ def add_tailwind
       EOF
     end
 
+  run "npx tailwindcss init --full"
+  gsub_file "tailwind.config.js", /plugins:\s\[],/, "plugins: [require('@tailwindcss/ui')],"
+  run "mv tailwind.config.js app/javascript/stylesheets/tailwind.config.js"
+
   append_to_file("app/javascript/packs/application.js", 'import "stylesheets/application"')
   inject_into_file("./postcss.config.js",
   "let tailwindcss = require('tailwindcss');\n",  before: "module.exports")
