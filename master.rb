@@ -28,6 +28,14 @@ def add_tailwind
   run "yarn add @fullhuman/postcss-purgecss"
 
   run "mkdir -p app/javascript/stylesheets"
+  run "touch app/javascript/stylesheets/application.scss"
+  
+  inject_into_file "app/javascript/stylesheets/application.scss" do <<~EOF
+      @import 'tailwindcss/base.css';
+      @import 'tailwindcss/components.css';
+      @import 'tailwindcss/utilities.css';
+      EOF
+    end
 
   append_to_file("app/javascript/packs/application.js", 'import "stylesheets/application"')
   inject_into_file("./postcss.config.js",
