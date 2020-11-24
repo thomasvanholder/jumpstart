@@ -20,6 +20,23 @@ end
 
 gsub_file('Gemfile', /# gem 'redis'/, "gem 'redis'")
 
+########################################
+############ TAILWIND
+########################################
+def add_tailwind
+  run "yarn add tailwindcss"
+  run "yarn add @fullhuman/postcss-purgecss"
+
+  run "mkdir -p app/javascript/stylesheets"
+
+  append_to_file("app/javascript/packs/application.js", 'import "stylesheets/application"')
+  inject_into_file("./postcss.config.js",
+  "let tailwindcss = require('tailwindcss');\n",  before: "module.exports")
+  inject_into_file("./postcss.config.js", "\n    tailwindcss('./app/javascript/stylesheets/tailwind.config.js'),", after: "plugins: [")
+
+  run "mkdir -p app/javascript/stylesheets/components"
+end
+
 # Assets
 ########################################
 run 'rm -rf app/assets/stylesheets'
@@ -223,35 +240,38 @@ after_bundle do
 
   # Fix puma config
   gsub_file('config/puma.rb', 'pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }', '# pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }')
+  
+  say
+  say "Kickoff app successfully created! 👍", :green
+  say
+  say "Switch to your app by running:"
+  add_tailwind
 
 
-  ########################################
-  # TAILWIND
-  ########################################
-  #  run 'yarn add tailwindcss' because error: PostCSS plugin postcss-nested requires PostCSS 8. Uncommment later.
-  run 'yarn add @tailwindcss/postcss7-compat' 
-  run 'yarn add postcss@^7'
-  run 'yarn add autoprefixer@^9'
-  run 'yarn add @tailwindcss/ui'
+#   #  run 'yarn add tailwindcss' because error: PostCSS plugin postcss-nested requires PostCSS 8. Uncommment later.
+#   run 'yarn add @tailwindcss/postcss7-compat' 
+#   run 'yarn add postcss@^7'
+#   run 'yarn add autoprefixer@^9'
+#   run 'yarn add @tailwindcss/ui'
 
-  run "mkdir app/javascript/stylesheets"
-  run "touch app/javascript/stylesheets/application.scss"
+#   run "mkdir app/javascript/stylesheets"
+#   run "touch app/javascript/stylesheets/application.scss"
 
-  inject_into_file "app/javascript/stylesheets/application.scss" do <<~EOF
-    @import 'tailwindcss/base.css';
-    @import 'tailwindcss/components.css';
-    @import 'tailwindcss/utilities.css';
-    EOF
-  end
+#   inject_into_file "app/javascript/stylesheets/application.scss" do <<~EOF
+#     @import 'tailwindcss/base.css';
+#     @import 'tailwindcss/components.css';
+#     @import 'tailwindcss/utilities.css';
+#     EOF
+#   end
 
-  run "npx tailwindcss init --full"
-  gsub_file "tailwind.config.js", /plugins:\s\[],/, "plugins: [require('@tailwindcss/ui')],"
-  run "mv tailwind.config.js app/javascript/stylesheets/tailwind.config.js"
+#   run "npx tailwindcss init --full"
+#   gsub_file "tailwind.config.js", /plugins:\s\[],/, "plugins: [require('@tailwindcss/ui')],"
+#   run "mv tailwind.config.js app/javascript/stylesheets/tailwind.config.js"
 
 
-  inject_into_file "postcss.config.js", before: "require('postcss-import')" do <<~EOF
-    require("tailwindcss")("./app/javascript/stylesheets/tailwind.config.js"),
-    EOF
-  end
+#   inject_into_file "postcss.config.js", before: "require('postcss-import')" do <<~EOF
+#     require("tailwindcss")("./app/javascript/stylesheets/tailwind.config.js"),
+#     EOF
+#   end
 
 end
