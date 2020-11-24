@@ -242,7 +242,7 @@ end
 
 run "npx tailwindcss init --full"
 mv "tailwind.config.js app/javascript/stylesheets
-inject_into_file 'postcss.config.js', before: 'require("postcss-import")' do
+inject_into_file 'postcss.config.js', before: 'require('postcss-import')' do
  <<~JS
       require("tailwindcss")("./app/javascript/stylesheets/tailwind.config.js"),
     JS
