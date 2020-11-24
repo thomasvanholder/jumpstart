@@ -241,7 +241,8 @@ after_bundle do
   end
 
   run "npx tailwindcss init --full"
-  run "mv tailwind.config.js app/javascript/stylesheets"
+  gsub_file "tailwind.config.js", /plugins:\s\[],/, "plugins: [require('@tailwindcss/ui')],"
+  run "mv tailwind.config.js app/javascript/stylesheets/tailwind.config.js"
 
 
   inject_into_file "postcss.config.js", before: "require('postcss-import')" do <<~EOF
