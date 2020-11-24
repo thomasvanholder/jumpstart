@@ -236,9 +236,9 @@ after_bundle do
   run "touch app/javascript/stylesheets/application.scss"
 
   inject_into_file "app/javascript/stylesheets/application.scss" do <<~EOF
-    @import 'tailwindcss/base';
-    @import 'tailwindcss/components';
-    @import 'tailwindcss/utilities';
+    @import 'tailwindcss/base.css';
+    @import 'tailwindcss/components.css';
+    @import 'tailwindcss/utilities.css';
     EOF
   end
 
