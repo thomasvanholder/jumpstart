@@ -45,6 +45,7 @@ gsub_file('app/views/layouts/application.html.erb', "<%= javascript_pack_tag 'ap
 style = <<~HTML
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 HTML
 gsub_file('app/views/layouts/application.html.erb', "<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>", style)
 
@@ -222,3 +223,27 @@ after_bundle do
   # Fix puma config
   gsub_file('config/puma.rb', 'pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }', '# pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }')
 end
+
+########################################
+# TAILWIND
+########################################
+run 'yarn add tailwindcss'
+run 'yarn add @tailwindcss/ui'
+
+run "mkdir app/javascript/stylesheets"
+run "touch app/javascript/stylesheets/application.scss"
+
+inject_into_file "app/javascript/stylesheets/application.scss" do <<~EOF
+  @import 'tailwindcss/base';
+  @import 'tailwindcss/components';
+  @import 'tailwindcss/utilities';
+  EOF
+end
+
+run "npx tailwindcss init --full"
+mv "tailwind.config.js app/javascript/stylesheets
+inject_into_file 'postcss.config.js', before: 'require("postcss-import")' do
+ <<~JS
+      require("tailwindcss")("./app/javascript/stylesheets/tailwind.config.js"),
+    JS
+  end
