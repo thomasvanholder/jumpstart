@@ -25,15 +25,15 @@ gsub_file('Gemfile', /# gem 'redis'/, "gem 'redis'")
 ########################################
 def add_tailwind
   run "yarn add tailwindcss@1.9.6"
-  run "yarn add @fullhuman/postcss-purgecss"
+  run 'yarn add @tailwindcss/ui'
 
   run "mkdir -p app/javascript/stylesheets"
   run "touch app/javascript/stylesheets/application.scss"
   
   inject_into_file "app/javascript/stylesheets/application.scss" do <<~EOF
-      @import 'tailwindcss/base.css';
-      @import 'tailwindcss/components.css';
-      @import 'tailwindcss/utilities.css';
+      @import 'tailwindcss/base';
+      @import 'tailwindcss/components';
+      @import 'tailwindcss/utilities';
       EOF
     end
 
