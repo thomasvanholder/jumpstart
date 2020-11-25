@@ -20,9 +20,6 @@ end
 
 gsub_file('Gemfile', /# gem 'redis'/, "gem 'redis'")
 
-########################################
-############ TAILWIND
-########################################
 def add_tailwind
   run "yarn add tailwindcss@1.9.6"
   run 'yarn add @tailwindcss/ui'
@@ -194,7 +191,6 @@ after_bundle do
   set_routes
   add_devise
   add_git_ignore
-  set_environment
  
   # Environments
   ########################################
