@@ -20,3 +20,4 @@ TODO:
 - add icons folder into stylesheets
 - add module inline svg render?
 - change name search to website
+- swap devise folder
