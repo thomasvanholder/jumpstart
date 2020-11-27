@@ -26,7 +26,7 @@ def add_tailwind
 
   run "mkdir -p app/javascript/stylesheets"
   run "touch app/javascript/stylesheets/application.scss"
-  
+
   inject_into_file "app/javascript/stylesheets/application.scss" do <<~EOF
       @import 'tailwindcss/base';
       @import 'tailwindcss/components';
@@ -46,17 +46,17 @@ def add_tailwind
   run "mkdir -p app/javascript/stylesheets/components"
 end
 
-# Assets
-########################################
-run 'rm -rf app/assets/stylesheets'
-run 'rm -rf vendor'
+def add_assets
+  run 'rm -rf app/assets'
+  run 'rm -rf vendor'
 
-run 'curl -L https://github.com/thomasvanholder/stylesheets/archive/master.zip > stylesheets.zip'
-run 'unzip stylesheets.zip -d app/assets && rm stylesheets.zip && mv app/assets/stylesheets-master app/assets/stylesheets'
+  run 'curl -L https://github.com/thomasvanholder/assets/archive/master.zip > assets.zip'
+  run 'unzip assets.zip -d app && rm assets.zip && mv app/assets-master app/assets'
 
-# Dev environment
-########################################
-gsub_file('config/environments/development.rb', /config\.assets\.debug.*/, 'config.assets.debug = false')
+  gsub_file('config/environments/development.rb', /config\.assets\.debug.*/, 'config.assets.debug = false')
+end
+
+add_assets
 
 # Layout
 ########################################
@@ -137,11 +137,11 @@ generators = <<~RUBY
     generate.test_framework :test_unit, fixture: false
   end
 RUBY
-  
+
 def set_routes
   route "root to: 'pages#home'"
 end
-  
+
 def add_devise
   generate('devise:install')
   generate('devise', 'User')
@@ -166,7 +166,7 @@ def add_devise
     end
   RUBY
 end
-  
+
 def add_git_ignore
   append_file '.gitignore', <<~TXT
     # Ignore .env file containing credentials.
@@ -191,7 +191,7 @@ after_bundle do
   set_routes
   add_devise
   add_git_ignore
- 
+
   # Environments
   ########################################
   environment 'config.action_mailer.default_url_options = { host: "http://localhost:3000" }', env: 'development'
@@ -225,7 +225,7 @@ after_bundle do
       const webpack = require('webpack');
       // Preventing Babel from transpiling NodeModules packages
       environment.loaders.delete('nodeModules');
-      
+
       environment.plugins.prepend('Provide',
         new webpack.ProvidePlugin({
         })
@@ -248,13 +248,13 @@ after_bundle do
 
   # Fix puma config
   gsub_file('config/puma.rb', 'pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }', '# pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }')
-  
+
 
   add_tailwind
   add_flashes
   add_navbar
-  
-  
+
+
   say
   say "Kickoff app successfully created! 👍", :blue
   say
