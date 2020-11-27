@@ -21,3 +21,6 @@ TODO:
 - add module inline svg render?
 - change name search to website
 - swap devise folder
+-- without username
+-- run migration to add first and last name to users table
+-- application controller, sanitize extra paramaters
