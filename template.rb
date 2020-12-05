@@ -33,7 +33,6 @@ def add_tailwind
 
   run "mkdir -p app/javascript/stylesheets"
   run "touch app/javascript/stylesheets/application.scss"
-
   inject_into_file "app/javascript/stylesheets/application.scss" do <<~EOF
       @import 'tailwindcss/base';
       @import 'tailwindcss/components';
@@ -42,10 +41,8 @@ def add_tailwind
     end
 
   run "npx tailwindcss init --full"
-  gsub_file "tailwind.config.js", /plugins:\s\[],/, "plugins:
-    \n[require('@tailwindcss/forms),
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio')],"
+  gsub_file "tailwind.config.js", /plugins:\s\[],/, "plugins:\n[require('@tailwindcss/forms),\nrequire('@tailwindcss/typography'),\nrequire('@tailwindcss/aspect-ratio')],"
+
   run "mv tailwind.config.js app/javascript/stylesheets/tailwind.config.js"
 
   append_to_file("app/javascript/packs/application.js", 'import "stylesheets/application"')
