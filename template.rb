@@ -124,6 +124,10 @@ def add_navbar
   run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/_navbar.html.erb > app/views/shared/_navbar.html.erb'
 end
 
+def add_flashed
+  run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/_flashes.html.erb > app/views/shared/_flashes.html.erb'
+end
+
 inject_into_file 'app/views/layouts/application.html.erb', after: '<body>' do
   <<-HTML
     <%= render 'shared/navbar' %>\n
@@ -195,7 +199,8 @@ def add_svg_helper
   end
 
   run 'rm -rf app/helpers/applicaton_helper.rb'
-  run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/applicaton_helper.rb > app/helpers/applicaton_helper.rb'
+
+  run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/application_helper.rb > app/helpers/applicaton_helper.rb'
 end
 
 environment generators
