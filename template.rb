@@ -184,6 +184,26 @@ def add_git_ignore
   TXT
 end
 
+
+
+def add_svg_helper
+  inject_into_file 'Gemfile', after: "gem 'font-awesome-sass'" do
+  <<~RUBY
+    gem 'inline_svg'
+  RUBY
+
+  inject_into_file 'app/views/layouts/application.html.erb', after: 'module ApplicationHelper' do
+    <<-RUBY
+      def render_svg(name, styles: "fill-current text-gray-400", title: nil) # class is reserverd word in method, so styles
+      filename = "#{name}.svg"
+      title ||= name.underscore.humanize
+      inline_svg_tag(filename, aria: true, nocomment: true, title: title, class: styles)
+    end
+    RUBY
+end
+
+end
+
 environment generators
 
 ########################################
@@ -260,6 +280,7 @@ after_bundle do
   add_tailwind
   add_flashes
   add_navbar
+  add_svg_helper
 
   run "bundle install"
 
