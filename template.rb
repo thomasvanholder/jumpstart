@@ -38,10 +38,7 @@ def add_tailwind
     end
 
   run "npx tailwindcss init --full"
-  gsub_file "tailwind.config.js", /plugins:\s\[],/,
-  "plugins: [
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/typography"),
+  gsub_file "tailwind.config.js", /plugins:\s\[],/, "plugins: [require("@tailwindcss/ui"),require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio")],"
   run "mv tailwind.config.js app/javascript/stylesheets/tailwind.config.js"
 
@@ -54,11 +51,11 @@ def add_tailwind
 end
 
 def add_assets
-  run 'rm -rf app/assets'
+  # run 'rm -rf app/assets'
   run 'rm -rf vendor'
 
-  run 'curl -L https://github.com/thomasvanholder/assets/archive/master.zip > assets.zip'
-  run 'unzip assets.zip -d app && rm assets.zip && mv app/assets-master app/assets'
+  # run 'curl -L https://github.com/thomasvanholder/assets/archive/master.zip > assets.zip'
+  # run 'unzip assets.zip -d app && rm assets.zip && mv app/assets-master app/assets'
 
   gsub_file('config/environments/development.rb', /config\.assets\.debug.*/, 'config.assets.debug = false')
 end
