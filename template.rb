@@ -194,8 +194,8 @@ def add_svg_helper
     RUBY
   end
 
-  run 'rm -rf app/helpers/applicaton_helper.rb'
-  run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/applicaton_helper.rb > app/helpers/applicaton_helper.rb'
+  run 'rm -rf app/helpers/application_helper.rb'
+  run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/applicaton_helper.rb > app/helpers/application_helper.rb'
 end
 
 environment generators
