@@ -57,9 +57,8 @@ def add_tailwind
 end
 
 def add_assets
-  # run 'rm -rf app/assets'
   run 'rm -rf vendor'
-
+  # run 'rm -rf app/assets'
   # run 'curl -L https://github.com/thomasvanholder/assets/archive/master.zip > assets.zip'
   # run 'unzip assets.zip -d app && rm assets.zip && mv app/assets-master app/assets'
 
