@@ -10,7 +10,7 @@ inject_into_file 'Gemfile', before: 'group :development, :test do' do
 end
 
 inject_into_file 'Gemfile', after: 'group :development, :test do' do
-  <<~RUBY
+  <<-RUBY
     gem 'pry-byebug'
     gem 'pry-rails'
     gem 'dotenv-rails'
@@ -256,6 +256,7 @@ after_bundle do
   add_tailwind
   add_flashes
   add_navbar
+
 
   say
   say "Kickoff app successfully created! 👍", :blue
