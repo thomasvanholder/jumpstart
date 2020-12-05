@@ -24,6 +24,8 @@ def add_tailwind
   run "yarn remove @rails/webpacker"
   run "yarn add rails/webpacker"
 
+  gsub_file('Gemfile', /gem 'webpacker'/, "gem 'webpacker', github: 'rails/webpacker'")
+
   run "yarn add tailwindcss@latest postcss@latest autoprefixer@latest"
   run 'yarn add @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio'
 
