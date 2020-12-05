@@ -1,7 +1,8 @@
 
 ## Create a new repo
 
-Tailwindcss 🏳️‍🌈 + Devise 🔐
+Rails 6 >> Tailwind 2.0 🏳️‍🌈 >> Devise 🔐
+
 ```
 rails new \
   --database postgresql \
