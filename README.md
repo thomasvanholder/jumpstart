@@ -24,3 +24,7 @@ TODO:
   - without username
   - run migration to add first and last name to users table
   - application controller, sanitize extra paramaters
+
+
+**Devise
+- user table inclusive of first and last name

@@ -1,6 +1,5 @@
 run "if uname | grep -q 'Darwin'; then pgrep spring | xargs kill -9; fi"
 
-# GEMFILE
 
 say "starting template creation: Devise & Tailwind", :green
 
@@ -37,11 +36,24 @@ def add_tailwind
       @import 'tailwindcss/base';
       @import 'tailwindcss/components';
       @import 'tailwindcss/utilities';
+
+      @import "components/base";
+      @import "components/buttons";
+      @import "components/cards";
+      @import "components/forms";
+      @import "components/icons";
+      @import "components/navigation";
       EOF
     end
 
+  run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/components > app/javascript/stylesheets/components'
+
   run "npx tailwindcss init --full"
-  gsub_file "tailwind.config.js", /plugins:\s\[],/, "plugins:\n[require('@tailwindcss/forms),\nrequire('@tailwindcss/typography'),\nrequire('@tailwindcss/aspect-ratio')],"
+  gsub_file "tailwind.config.js", /plugins:\s\[],/, "  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
+  ],"
 
   run "mv tailwind.config.js app/javascript/stylesheets/tailwind.config.js"
 
@@ -49,8 +61,6 @@ def add_tailwind
   inject_into_file("./postcss.config.js",
   "let tailwindcss = require('tailwindcss');\n",  before: "module.exports")
   inject_into_file("./postcss.config.js", "\n    tailwindcss('./app/javascript/stylesheets/tailwind.config.js'),", after: "plugins: [")
-
-  run "mkdir -p app/javascript/stylesheets/components"
 end
 
 def add_assets
@@ -124,8 +134,10 @@ def add_devise
     end
   RUBY
 
+  run "rails g migration AddFirstNameLastNameToUsers first_name last_name"
   rails_command 'db:migrate'
-  generate('devise:views')
+  # generate('devise:views')
+  run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/devise > app/views/devise'
 
   run 'rm app/controllers/pages_controller.rb'
   file 'app/controllers/pages_controller.rb', <<~RUBY
@@ -228,7 +240,6 @@ after_bundle do
 
   # Fix puma config
   gsub_file('config/puma.rb', 'pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }', '# pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }')
-
 
   add_tailwind
   add_navbar

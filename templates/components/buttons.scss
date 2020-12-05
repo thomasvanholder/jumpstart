@@ -1,0 +1,64 @@
+.btn {
+  @apply font-semibold text-lg py-3 px-6 rounded cursor-pointer no-underline;
+}
+
+.btn-small {
+  @apply font-bold py-2 px-4 rounded text-sm;
+}
+
+.btn-purple {
+  @apply bg-purple-600 text-white;
+}
+
+.btn-purple:hover {
+  @apply bg-purple-700;
+}
+
+.btn-green {
+  @apply bg-green-600 text-white;
+}
+
+.btn-green:hover {
+  @apply bg-green-700;
+}
+
+.btn-purple:active,
+.btn-green:active {
+  @apply text-white;
+}
+
+.btn-outline {
+  @apply text-gray-800 border border-gray-400;
+}
+
+.btn-outline:hover {
+  @apply bg-gray-100 text-gray-800 border-gray-400;
+}
+
+.btn-white {
+  @apply bg-white text-gray-800 py-2 px-4 border border-gray-400 rounded shadow;
+}
+
+.btn-white:hover {
+  @apply bg-gray-100;
+}
+
+.link {
+  @apply no-underline;
+}
+
+.link-grey {
+  @apply text-gray-600;
+}
+
+.link-grey:hover {
+  @apply text-gray-700;
+}
+
+.link-purple {
+  @apply text-purple-600;
+}
+
+.link-purple:hover {
+  @apply text-purple-800;
+}
