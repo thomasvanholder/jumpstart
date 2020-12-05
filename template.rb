@@ -85,7 +85,6 @@ style = <<~HTML
 HTML
 gsub_file('app/views/layouts/application.html.erb', "<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>", style)
 
-
 def add_navbar
   run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/_navbar.html.erb > app/views/shared/_navbar.html.erb'
 end
@@ -190,7 +189,6 @@ after_bundle do
   # Webpacker / Yarn
   ########################################
   append_file 'app/javascript/packs/application.js', <<~JS
-
 
     // ----------------------------------------------------
     // ABOVE IS RAILS DEFAULT CONFIGURATION
