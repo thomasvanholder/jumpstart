@@ -6,7 +6,7 @@ Tailwindcss 🏳️‍🌈 + Devise 🔐
 rails new \
   --database postgresql \
   --webpack \
-  -m https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/master.rb \
+  -m https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/template.rb \
   PROJECT-NAME
 ```
 
