@@ -21,8 +21,11 @@ end
 gsub_file('Gemfile', /# gem 'redis'/, "gem 'redis'")
 
 def add_tailwind
-  run "yarn add tailwindcss@1.9.6"
-  run 'yarn add @tailwindcss/ui'
+  run "yarn remove @rails/webpacker"
+  run "yarn add rails/webpacker"
+
+  run "yarn add tailwindcss@latest postcss@latest autoprefixer@latest"
+  run 'yarn add @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio'
 
   run "mkdir -p app/javascript/stylesheets"
   run "touch app/javascript/stylesheets/application.scss"
@@ -35,7 +38,11 @@ def add_tailwind
     end
 
   run "npx tailwindcss init --full"
-  gsub_file "tailwind.config.js", /plugins:\s\[],/, "plugins: [require('@tailwindcss/ui')],"
+  gsub_file "tailwind.config.js", /plugins:\s\[],/,
+  "plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio")],"
   run "mv tailwind.config.js app/javascript/stylesheets/tailwind.config.js"
 
   append_to_file("app/javascript/packs/application.js", 'import "stylesheets/application"')
