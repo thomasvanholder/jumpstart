@@ -44,8 +44,8 @@ def add_tailwind
   run "npx tailwindcss init --full"
   gsub_file "tailwind.config.js", /plugins:\s\[],/, "plugins:
     \n[require('@tailwindcss/ui'),
-    \nrequire('@tailwindcss/typography'),
-    \nrequire('@tailwindcss/aspect-ratio')],"
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio')],"
   run "mv tailwind.config.js app/javascript/stylesheets/tailwind.config.js"
 
   append_to_file("app/javascript/packs/application.js", 'import "stylesheets/application"')
