@@ -22,11 +22,12 @@ gsub_file('Gemfile', /# gem 'redis'/, "gem 'redis'")
 
 def add_tailwind
   run "yarn remove @rails/webpacker"
-  run "yarn add rails/webpacker"
+  run "yarn add @rails/webpacker"
 
   gsub_file('Gemfile', /gem 'webpacker', '~> 4.0'/, "gem 'webpacker', github: 'rails/webpacker'")
 
   run "yarn add tailwindcss@latest postcss@latest autoprefixer@latest"
+  run "yarn remove @tailwindcss/ui"
   run 'yarn add @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio'
 
   run "mkdir -p app/javascript/stylesheets"
@@ -260,12 +261,10 @@ after_bundle do
   add_flashes
   add_navbar
 
-
   say
-  say "Kickoff app successfully created! 👍", :blue
+  say "Kickoff app successfully created! 👍", :green
   say
   say "Switch to your app by running:", :green
   say "  cd #{app_name}"
   say
-
 end
