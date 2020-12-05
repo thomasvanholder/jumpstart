@@ -43,7 +43,7 @@ def add_tailwind
 
   run "npx tailwindcss init --full"
   gsub_file "tailwind.config.js", /plugins:\s\[],/, "plugins:
-    \n[require('@tailwindcss/ui'),
+    \n[require('@tailwindcss/forms),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio')],"
   run "mv tailwind.config.js app/javascript/stylesheets/tailwind.config.js"
@@ -68,14 +68,6 @@ end
 add_assets
 
 # Layout
-########################################
-if Rails.version < "6"
-  scripts = <<~HTML
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  HTML
-  gsub_file('app/views/layouts/application.html.erb', "<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>", scripts)
-end
 gsub_file('app/views/layouts/application.html.erb', "<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>", "<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>")
 style = <<~HTML
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -83,6 +75,8 @@ style = <<~HTML
       <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 HTML
 gsub_file('app/views/layouts/application.html.erb', "<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>", style)
+
+
 
 def add_navbar
   run "mkdir -p app/views/shared"
