@@ -96,7 +96,8 @@ end
 
 inject_into_file 'app/views/layouts/application.html.erb', after: '<body>' do
   <<-HTML
-    <%= render 'shared/navbar' %>\n
+    \n
+    <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
   HTML
 end
@@ -164,7 +165,7 @@ def add_svg_helper
     RUBY
   end
 
-  run 'rm -rf app/helpers/applicaton_helper.rb'
+  run 'rm -rf app/helpers/application_helper.rb'
 
   run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/application_helper.rb > app/helpers/applicaton_helper.rb'
 end
