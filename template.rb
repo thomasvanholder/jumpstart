@@ -49,11 +49,8 @@ def add_tailwind
   run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/components > app/javascript/stylesheets/components'
 
   run "npx tailwindcss init --full"
-  gsub_file("tailwind.config.js", /plugins:\s\[],/, "plugins: [
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/aspect-ratio"),
-  ],")
+  gsub_file "tailwind.config.js", /plugins:\s\[],/, "plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/aspect-ratio'),],"
+
 
   run "mv tailwind.config.js app/javascript/stylesheets/tailwind.config.js"
 
@@ -247,7 +244,7 @@ after_bundle do
   add_svg_helper
 
   run "bundle install"
-
+  say "--------------------------------"
   say
   say "Kickoff app successfully created! 👍", :green
   say
