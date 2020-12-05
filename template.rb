@@ -189,8 +189,8 @@ end
 
 def add_svg_helper
   inject_into_file 'Gemfile', after: "gem 'font-awesome-sass'" do
-    <<~RUBY\n
-      gem 'inline_svg'
+    <<~RUBY
+      \ngem 'inline_svg'
     RUBY
   end
 
