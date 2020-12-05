@@ -2,7 +2,8 @@ run "if uname | grep -q 'Darwin'; then pgrep spring | xargs kill -9; fi"
 
 # GEMFILE
 
-say "starting template creation: Devise ?? & Tailwind ??????"
+say "starting template creation: Devise & Tailwind", :green
+
 inject_into_file 'Gemfile', before: 'group :development, :test do' do
   <<~RUBY
     gem 'devise'
@@ -186,25 +187,15 @@ def add_git_ignore
   TXT
 end
 
-
-
 def add_svg_helper
   inject_into_file 'Gemfile', after: "gem 'font-awesome-sass'" do
-  <<~RUBY
-    gem 'inline_svg'
-  RUBY
+    <<~RUBY\n
+      gem 'inline_svg'
+    RUBY
   end
 
-  inject_into_file 'app/views/layouts/application.html.erb', after: 'module ApplicationHelper' do
-    <<-RUBY
-      def render_svg(name, styles: "fill-current text-gray-400", title: nil) # class is reserverd word in method, so styles
-      filename = "#{name}.svg"
-      title ||= name.underscore.humanize
-      inline_svg_tag(filename, aria: true, nocomment: true, title: title, class: styles)
-    end
-    RUBY
-end
-
+  run 'rm -rf app/helpers/applicaton_helper.rb'
+  run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/applicaton_helper.rb > app/helpers/applicaton_helper.rb'
 end
 
 environment generators
