@@ -86,6 +86,7 @@ HTML
 gsub_file('app/views/layouts/application.html.erb', "<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>", style)
 
 def add_navbar
+  run "mkdir -p app/views/shared"
   run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/_navbar.html.erb > app/views/shared/_navbar.html.erb'
 end
 
