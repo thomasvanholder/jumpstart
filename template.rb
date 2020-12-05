@@ -193,6 +193,7 @@ def add_svg_helper
   <<~RUBY
     gem 'inline_svg'
   RUBY
+  end
 
   inject_into_file 'app/views/layouts/application.html.erb', after: 'module ApplicationHelper' do
     <<-RUBY
