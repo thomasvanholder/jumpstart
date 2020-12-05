@@ -46,7 +46,7 @@ def add_tailwind
       EOF
     end
 
-  run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/components > app/javascript/stylesheets/components'
+  run "svn export https://github.com/thomasvanholder/jumpstart/trunk/templates/components /app/javascript/stylesheets/components"
 
   run "npx tailwindcss init --full"
   gsub_file "tailwind.config.js", /plugins:\s\[],/, "plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/aspect-ratio'),],"
@@ -134,7 +134,7 @@ def add_devise
   run "rails g migration AddFirstNameLastNameToUsers first_name last_name"
   rails_command 'db:migrate'
   # generate('devise:views')
-  run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/devise > app/views/devise'
+  run "svn export https://github.com/thomasvanholder/jumpstart/trunk/templates/devise /app/views/devise"
 
   run 'rm app/controllers/pages_controller.rb'
   file 'app/controllers/pages_controller.rb', <<~RUBY
