@@ -2,6 +2,7 @@ run "if uname | grep -q 'Darwin'; then pgrep spring | xargs kill -9; fi"
 
 # GEMFILE
 
+say "starting template creation: Devise ?? & Tailwind ??????"
 inject_into_file 'Gemfile', before: 'group :development, :test do' do
   <<~RUBY
     gem 'devise'
@@ -27,7 +28,6 @@ def add_tailwind
   gsub_file('Gemfile', /gem 'webpacker', '~> 4.0'/, "gem 'webpacker', github: 'rails/webpacker'")
 
   run "yarn add tailwindcss@latest postcss@latest autoprefixer@latest"
-  run "yarn remove @tailwindcss/ui"
   run 'yarn add @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio'
 
   run "mkdir -p app/javascript/stylesheets"
@@ -123,7 +123,7 @@ end
 
 inject_into_file 'app/views/layouts/application.html.erb', after: '<body>' do
   <<-HTML
-    <%= render 'shared/navbar' %>
+    <%= render 'shared/navbar' %>\n
     <%= render 'shared/flashes' %>
   HTML
 end
@@ -260,6 +260,8 @@ after_bundle do
   add_tailwind
   add_flashes
   add_navbar
+
+  run "bundle install"
 
   say
   say "Kickoff app successfully created! 👍", :green
