@@ -49,11 +49,11 @@ def add_tailwind
   run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/components > app/javascript/stylesheets/components'
 
   run "npx tailwindcss init --full"
-  gsub_file "tailwind.config.js", /plugins:\s\[],/, "  plugins: [
+  gsub_file("tailwind.config.js", /plugins:\s\[],/, "plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio"),
-  ],"
+  ],")
 
   run "mv tailwind.config.js app/javascript/stylesheets/tailwind.config.js"
 
