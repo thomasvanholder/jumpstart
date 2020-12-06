@@ -46,7 +46,8 @@ def add_tailwind
       EOF
     end
 
-  run "svn export https://github.com/thomasvanholder/jumpstart/trunk/templates/components /app/javascript/stylesheets"
+  run 'curl -L https://github.com/thomasvanholder/tailwind-components/archive/master.zip > components.zip'
+  run 'unzip components.zip -d app && rm components.zip && mkdir app/javascript/components && mv app/tailwind-components-master app/views/components'
 
   run "npx tailwindcss init --full"
   gsub_file "tailwind.config.js", /plugins:\s\[],/, "plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/aspect-ratio'),],"
@@ -123,6 +124,7 @@ end
 def add_devise
   generate('devise:install')
   generate('devise', 'User')
+  run "rails g migration AddFirstNameLastNameToUsers first_name last_name"
 
   run 'rm app/controllers/application_controller.rb'
   file 'app/controllers/application_controller.rb', <<~RUBY
@@ -131,10 +133,9 @@ def add_devise
     end
   RUBY
 
-  run "rails g migration AddFirstNameLastNameToUsers first_name last_name"
   rails_command 'db:migrate'
-  # generate('devise:views')
-  run "svn export https://github.com/thomasvanholder/jumpstart/trunk/templates/devise /app/views"
+  run 'curl -L https://github.com/thomasvanholder/devise/archive/master.zip > devise.zip'
+  run 'unzip devise.zip -d app && rm devise.zip && mkdir app/views/devise && mv app/devise-master app/views/devise'
 
   run 'rm app/controllers/pages_controller.rb'
   file 'app/controllers/pages_controller.rb', <<~RUBY
