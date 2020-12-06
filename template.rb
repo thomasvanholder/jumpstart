@@ -47,7 +47,7 @@ def add_tailwind
     end
 
   run 'curl -L https://github.com/thomasvanholder/tailwind-components/archive/master.zip > components.zip'
-  run 'unzip components.zip -d app && rm components.zip && mv app/tailwind-components-master app/views/components'
+  run 'unzip components.zip -d app && rm components.zip && mv app/tailwind-components-master app/javascript/components'
 
   run "npx tailwindcss init --full"
   gsub_file "tailwind.config.js", /plugins:\s\[],/, "plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/aspect-ratio'),],"
