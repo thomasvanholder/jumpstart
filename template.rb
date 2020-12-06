@@ -47,7 +47,7 @@ def add_tailwind
     end
 
   run 'curl -L https://github.com/thomasvanholder/tailwind-components/archive/master.zip > components.zip'
-  run 'unzip components.zip -d app && rm components.zip && mkdir app/javascript/components && mv app/tailwind-components-master app/views/components'
+  run 'unzip components.zip -d app && rm components.zip && mv app/tailwind-components-master app/views/components'
 
   run "npx tailwindcss init --full"
   gsub_file "tailwind.config.js", /plugins:\s\[],/, "plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/aspect-ratio'),],"
@@ -135,7 +135,7 @@ def add_devise
 
   rails_command 'db:migrate'
   run 'curl -L https://github.com/thomasvanholder/devise/archive/master.zip > devise.zip'
-  run 'unzip devise.zip -d app && rm devise.zip && mkdir app/views/devise && mv app/devise-master app/views/devise'
+  run 'unzip devise.zip -d app && rm devise.zip && mv app/devise-master app/views/devise'
 
   run 'rm app/controllers/pages_controller.rb'
   file 'app/controllers/pages_controller.rb', <<~RUBY
