@@ -12,7 +12,7 @@ Run one of the command below and change _PROJECT-NAME_ to the name of your new p
 - icons
 
 __To Do__
-- [] application controller, sanitize extra paramaters
+- [ ] application controller, sanitize extra paramaters
 
 ```bash
 rails new \
