@@ -27,3 +27,7 @@ TODO:
 
 **Devise
 - user table inclusive of first and last name
+- devise/views from [thomasvanholder/devise](https://github.com/thomasvanholder/devise)
+
+**Tailwind 2.0
+- javascript/components from [thomasvanholder/tailwind-components](https://github.com/thomasvanholder/tailwind-components)
