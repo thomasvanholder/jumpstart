@@ -1,13 +1,13 @@
 run "if uname | grep -q 'Darwin'; then pgrep spring | xargs kill -9; fi"
 
 
-say "starting template creation: Rails 6, Tailwind 2, Devise", :green
+say "starting template creation: Rails 6, Tailwind 2", :green
 
 inject_into_file 'Gemfile', before: 'group :development, :test do' do
   <<~RUBY
-    gem 'devise'
     gem 'autoprefixer-rails'
     gem 'font-awesome-sass'
+    gem 'inline_svg'
   RUBY
 end
 
@@ -80,7 +80,6 @@ HTML
 gsub_file('app/views/layouts/application.html.erb', "<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>", style)
 
 
-
 def add_navbar
   run "mkdir -p app/views/shared"
   run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/_navbar.html.erb > app/views/shared/_navbar.html.erb'
@@ -119,33 +118,6 @@ def set_routes
   route "root to: 'pages#home'"
 end
 
-def add_devise
-  generate('devise:install')
-  generate('devise', 'User')
-  run "rails g migration AddFirstNameLastNameToUsers first_name last_name"
-
-  run 'rm app/controllers/application_controller.rb'
-  file 'app/controllers/application_controller.rb', <<~RUBY
-    class ApplicationController < ActionController::Base
-    #{  "protect_from_forgery with: :exception\n" if Rails.version < "5.2"}  before_action :authenticate_user!
-    end
-  RUBY
-
-  rails_command 'db:migrate'
-  run 'curl -L https://github.com/thomasvanholder/devise/archive/master.zip > devise.zip'
-  run 'unzip devise.zip -d app && rm devise.zip && mv app/devise-master app/views/devise'
-
-  run 'rm app/controllers/pages_controller.rb'
-  file 'app/controllers/pages_controller.rb', <<~RUBY
-    class PagesController < ApplicationController
-      skip_before_action :authenticate_user!, only: [ :home ]
-
-      def home
-      end
-    end
-  RUBY
-end
-
 def add_git_ignore
   append_file '.gitignore', <<~TXT
     # Ignore .env file containing credentials.
@@ -157,12 +129,6 @@ def add_git_ignore
 end
 
 def add_svg_helper
-  inject_into_file 'Gemfile', after: "gem 'font-awesome-sass'" do
-    <<~RUBY
-      \ngem 'inline_svg'
-    RUBY
-  end
-
   run 'rm -rf app/helpers/application_helper.rb'
 
   run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/application_helper.rb > app/helpers/application_helper.rb'
@@ -179,7 +145,6 @@ after_bundle do
 
   set_routes
   add_assets
-  add_devise
   add_git_ignore
 
   # Environments
@@ -193,12 +158,11 @@ after_bundle do
 
     // ----------------------------------------------------
     // ABOVE IS RAILS DEFAULT CONFIGURATION
-    // WRITE YOUR OWN JS STARTING FROM HERE 👇
+    // WRITE YOUR OWN JS STARTING FROM HERE đ
     // ----------------------------------------------------
 
     // External imports
     import "../stylesheets/application.scss";
-
 
     // Internal imports, e.g:
     // import { initSelect2 } from '../components/init_select2';
@@ -222,12 +186,7 @@ after_bundle do
     JS
   end
 
-  # Dotenv
-  ########################################
   run 'touch .env'
-
-  # Rubocop
-  ########################################
   run 'curl -L https://raw.githubusercontent.com/lewagon/rails-templates/master/.rubocop.yml > .rubocop.yml'
 
   # Git
@@ -246,7 +205,7 @@ after_bundle do
   run "bundle install"
   say "--------------------------------"
   say
-  say "Kickoff app successfully created! 👍", :green
+  say "Kickoff app successfully created! đ", :green
   say
   say "Switch to your app by running:", :green
   say "  cd #{app_name}"

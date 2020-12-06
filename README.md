@@ -1,9 +1,20 @@
 
 ## Create a new repo
 
-Rails 6 >> Tailwind 2.0 🏳️‍🌈 >> Devise 🔐
+2 templates availabel, with or without devise.
+Run one of the command below and change _PROJECT-NAME_ to the name of your new project.
 
-```
+
+### Rails 6 | Tailwind 2.0 🏳️‍🌈 | Devise 🔐
+- navbar
+- styled devise/views from [thomasvanholder/devise](https://github.com/thomasvanholder/devise)
+- first and last name added to user model
+- icons
+
+__To Do__
+- [] application controller, sanitize extra paramaters
+
+```bash
 rails new \
   --database postgresql \
   --webpack \
@@ -11,23 +22,17 @@ rails new \
   PROJECT-NAME
 ```
 
+### Rails 6 | Tailwind 2.0 🏳️‍🌈
+```bash
+rails new \
+  --database postgresql \
+  --webpack \
+  -m https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/basic.rb \
+  PROJECT-NAME
+```
 
-TODO:
-**navbar component**
-- [x] add navbar into templates folder
-- [x] add icons folder into project
-- [x] add tailwind components
-- [x] add first_name, last_name to user model (devise)
-- [x] add icons folder into stylesheets
-- [x] add helper inline svg render
-- [x] swap devise folder
-  - [x] without username, run migration to add first and last name to users table
-  - application controller, sanitize extra paramaters
-
-
-**Devise
-- user table inclusive of first and last name
-- devise/views from [thomasvanholder/devise](https://github.com/thomasvanholder/devise)
-
-**Tailwind 2.0
+###Tailwind 2.0
 - javascript/components from [thomasvanholder/tailwind-components](https://github.com/thomasvanholder/tailwind-components)
+
+###Assets
+- javascript/components from [thomasvanholder/assets](https://github.com/thomasvanholder/assets)
