@@ -9,9 +9,8 @@ Run one of the commands below and change _PROJECT-NAME_ to the name of your new 
 - navbar
 - styled devise/views from [thomasvanholder/devise](https://github.com/thomasvanholder/devise)
 - javascript/components from [thomasvanholder/tailwind-components](https://github.com/thomasvanholder/tailwind-components)
-- javascript/components from [thomasvanholder/assets](https://github.com/thomasvanholder/assets)
+- assets and icons from [thomasvanholder/assets](https://github.com/thomasvanholder/assets)
 - first and last name added to user model
-- icons
 
 ```bash
 rails new \
@@ -23,7 +22,7 @@ rails new \
 
 ### Rails 6 | Tailwind 2.0 🏳️‍🌈
 - javascript/components from [thomasvanholder/tailwind-components](https://github.com/thomasvanholder/tailwind-components)
-- javascript/components from [thomasvanholder/assets](https://github.com/thomasvanholder/assets)
+- assets and icons from [thomasvanholder/assets](https://github.com/thomasvanholder/assets)
 
 ```bash
 rails new \
