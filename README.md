@@ -2,15 +2,16 @@
 ## Create a new repo
 
 2 templates available, with or without devise.
-Run one of the command below and change _PROJECT-NAME_ to the name of your new project.
+Run one of the commands below and change _PROJECT-NAME_ to the name of your new project.
 
 
 ### Rails 6 | Tailwind 2.0 🏳️‍🌈 | Devise 🔐
 - navbar
 - styled devise/views from [thomasvanholder/devise](https://github.com/thomasvanholder/devise)
+- javascript/components from [thomasvanholder/tailwind-components](https://github.com/thomasvanholder/tailwind-components)
+- javascript/components from [thomasvanholder/assets](https://github.com/thomasvanholder/assets)
 - first and last name added to user model
 - icons
-
 
 ```bash
 rails new \
@@ -21,6 +22,9 @@ rails new \
 ```
 
 ### Rails 6 | Tailwind 2.0 🏳️‍🌈
+- javascript/components from [thomasvanholder/tailwind-components](https://github.com/thomasvanholder/tailwind-components)
+- javascript/components from [thomasvanholder/assets](https://github.com/thomasvanholder/assets)
+
 ```bash
 rails new \
   --database postgresql \
@@ -28,13 +32,6 @@ rails new \
   -m https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/basic.rb \
   PROJECT-NAME
 ```
-- [ ] render navbar without devise logic
-
-### Tailwind 2.0
-- javascript/components from [thomasvanholder/tailwind-components](https://github.com/thomasvanholder/tailwind-components)
-
-### Assets
-- javascript/components from [thomasvanholder/assets](https://github.com/thomasvanholder/assets)
 
 __To Do__
 - [ ] application controller, sanitize extra paramaters
