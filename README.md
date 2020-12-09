@@ -28,6 +28,7 @@ rails new \
   -m https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/basic.rb \
   PROJECT-NAME
 ```
+- [ ] render navbar without devise logic
 
 ### Tailwind 2.0
 - javascript/components from [thomasvanholder/tailwind-components](https://github.com/thomasvanholder/tailwind-components)
