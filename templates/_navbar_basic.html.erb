@@ -1,0 +1,24 @@
+<nav class="bg-white py-2 border-b border-gray-400" role="navigation" aria-label="main-navigation">
+  <div class="flex flex-wrap items-center justify-center lg:justify-start lg:content-center px-4 lg:px:6">
+
+    <%= link_to root_path, class:"leading-normal no-underline text-gray-800 my-2 md:my-0" do %>
+      <h1 class="text-lg pr-2 font-bold">Website</h1>
+    <% end %>
+
+    <div class="flex flex-wrap justify-start w-full lg:w-2/3">
+      <div class="w-full lg:w-1/2 px-0 md:px-2">
+        <div class="relative">
+          <input id="search" type="text" class="input" style="padding-left:35px;" placeholder="Search Website"/>
+          <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center px-3 text-gray-700">
+            <%= render_svg "icons/search", styles:"h-4 w-4" %>
+          </div>
+        </div>
+      </div>
+      <div class="w-full lg:w-1/2 px-0 md:px-2 mb-2 lg:mb-0 flex items-center">
+        <%= link_to "Link 1","#", class:"text-gray-700 cursor-pointer mx-6"  %>
+        <%= link_to "Link 2","#", class:"text-gray-700 cursor-pointer mx-6"  %>
+        <%= link_to "Link 3","#", class:"text-gray-700 cursor-pointer mx-6"  %>
+      </div>
+    </div>
+  </div>
+</nav>

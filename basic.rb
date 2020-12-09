@@ -82,7 +82,7 @@ gsub_file('app/views/layouts/application.html.erb', "<%= stylesheet_link_tag 'ap
 
 def add_navbar
   run "mkdir -p app/views/shared"
-  run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/_navbar.html.erb > app/views/shared/_navbar.html.erb'
+  run 'curl -L https://raw.githubusercontent.com/thomasvanholder/jumpstart/main/templates/_navbar_basic.html.erb > app/views/shared/_navbar.html.erb'
 end
 
 def add_flashes
