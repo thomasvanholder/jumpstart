@@ -11,8 +11,6 @@ Run one of the command below and change _PROJECT-NAME_ to the name of your new p
 - first and last name added to user model
 - icons
 
-__To Do__
-- [ ] application controller, sanitize extra paramaters
 
 ```bash
 rails new \
@@ -31,8 +29,13 @@ rails new \
   PROJECT-NAME
 ```
 
-###Tailwind 2.0
+### Tailwind 2.0
 - javascript/components from [thomasvanholder/tailwind-components](https://github.com/thomasvanholder/tailwind-components)
 
-###Assets
+### Assets
 - javascript/components from [thomasvanholder/assets](https://github.com/thomasvanholder/assets)
+
+__To Do__
+- [ ] application controller, sanitize extra paramaters
+- [ ] add more button colors as tailwind components
+- [ ] remove login / signup button from navbar when no devise
