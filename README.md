@@ -1,7 +1,7 @@
 
 ## Create a new repo
 
-2 templates available, with or without devise.
+2 templates available, with or without devise.<br>
 Run one of the commands below and change _PROJECT-NAME_ to the name of your new project.
 
 
