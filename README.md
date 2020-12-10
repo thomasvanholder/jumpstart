@@ -6,7 +6,7 @@ Run one of the commands below and change _PROJECT-NAME_ to the name of your new 
 
 
 ### Rails 6 | Tailwind 2.0 🏳️‍🌈 | Devise 🔐
-- navbar
+- styled navbar
 - styled devise/views from [thomasvanholder/devise](https://github.com/thomasvanholder/devise)
 - javascript/components from [thomasvanholder/tailwind-components](https://github.com/thomasvanholder/tailwind-components)
 - assets and icons from [thomasvanholder/assets](https://github.com/thomasvanholder/assets)
@@ -21,6 +21,7 @@ rails new \
 ```
 
 ### Rails 6 | Tailwind 2.0 🏳️‍🌈
+- styled navbar
 - javascript/components from [thomasvanholder/tailwind-components](https://github.com/thomasvanholder/tailwind-components)
 - assets and icons from [thomasvanholder/assets](https://github.com/thomasvanholder/assets)
 
