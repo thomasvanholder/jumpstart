@@ -1,3 +1,4 @@
+Inspired by the [Le Wagon Rails templates](https://github.com/lewagon/rails-templates)
 
 ## Create a new repo
 
