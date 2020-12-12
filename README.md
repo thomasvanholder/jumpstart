@@ -37,3 +37,4 @@ __To Do__
 - [ ] application controller, sanitize extra paramaters
 - [ ] add more button colors as tailwind components
 - [ ] remove login / signup button from navbar when no devise
+ 
